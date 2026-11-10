@@ -85,11 +85,15 @@ guard, the planner and the LLM tool loop (with a scripted fake model). CI runs t
 The bundled sample (`data/indian_ocean_aug_2025/`, 31 daily files, **January 2020**, Indian Ocean) is from the international Argo
 programme (https://argo.ucsd.edu), which is freely available. The folder name is historical.
 
+For current data, `python tools/fetch_argo.py --days 31` downloads the newest daily files from the public GDAC into
+`data/recent/` (the GDAC runs a day or two behind real time); then `floatchat ingest data/recent && floatchat embed`.
+The hosted demo uses 10 Oct - 9 Nov 2026 (2,603 profiles from 861 floats).
+
 ## Browser demo
 
-`docs/` and the portfolio site ship a static version: the same profiles, summaries and 384-d embeddings exported from this
-database, with in-browser semantic search (Transformers.js, same MiniLM model) and the same tools reimplemented in
-JavaScript. See `tools/export_static.py`.
+The portfolio site ([raksh3011.github.io/floatchat](https://raksh3011.github.io/floatchat/)) ships a static version: the same profiles, summaries and 384-d embeddings exported from this
+database, with in-browser semantic search (Transformers.js, same MiniLM model; keyword fallback when offline), follow-up
+questions, drag-a-box area selection, CSV export, and the equivalent query shown for every answer. See `tools/export_static.py`.
 
 ## Limitations
 
